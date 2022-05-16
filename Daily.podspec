@@ -3,7 +3,6 @@ Pod::Spec.new do |spec|
   spec.version            = "0.1.1"
   spec.summary            = "The Daily Client SDK for iOS"
   spec.description        = "The Daily Client SDK allows you to build video and audio calling into your iOS applications"
-  spec.homepage           = "https://docs.daily.co/guides/products/mobile#introducing-dailys-native-mobile-libraries-beta"
   spec.documentation_url  = "https://docs.daily.co/guides/products/mobile/ios"
   spec.license            = { :type => "BSD-2" }
   spec.author             = { "Daily.co" => "help@daily.co" }
