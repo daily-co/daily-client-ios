@@ -1,0 +1,2 @@
+# Prevent '.podspec' files from getting counted as 'Ruby':
+Daily.podspec -linguist-detectable

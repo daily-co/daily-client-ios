@@ -19,3 +19,7 @@ and add `"Daily"` to your application/library target, `dependencies`, e.g. like 
     .product(name: "Daily", package: "daily-ios-client")
 ],
 ```
+
+## Learn more
+
+Find the full official documentation [here](https://docs.daily.co/guides/products/mobile/ios).
