@@ -17,8 +17,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "Daily",
-            url: "https://www.daily.co/sdk/daily-client-ios-0.3.1.zip",
-            checksum: "99a3e82ced3d34bc046205b7569c1f10998bb628ef9de25db5cbd1346ac25214"
+            url: "https://www.daily.co/sdk/daily-client-ios-0.4.0.zip",
+            checksum: "f733d70e35db6157cfa1b6a01dea3621ba85cff332f3dcc0d4b9e61f3cbefed2"
         ),
     ]
 )
