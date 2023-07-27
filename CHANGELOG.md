@@ -5,7 +5,60 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.8.0
+## [0.9.0] - 2023-07-27
+
+### Added
+
+<!-- for new functionality -->
+
+- Associated value (`DefaultStreamingLayout`) for `StreamingLayout.default`:
+
+  ```swift
+  enum StreamingLayout {
+      case `default`(DefaultStreamingLayout)
+
+      // ...
+  }
+  ```
+
+- Variant `.staged` in `enum SubscriptionState`:
+
+  ```swift
+  enum SubscriptionState {
+      /// The track has been staged and has made preparations to subscribe to data quickly.
+      case staged
+
+      // ...
+  }
+  ```
+
+### Changed
+
+<!-- for changed functionality -->
+
+- Renamed `CustomStreamingCompositionParamId` to `CustomStreamingCompositionParamID`
+- Renamed `CustomStreamingSessionAssetId` to `CustomStreamingSessionAssetID`
+- Renamed `MediaStreamTrackId` to `MediaStreamTrackID`
+- Renamed `ParticipantId` to `ParticipantID`
+- Renamed `RecordingId` to `RecordingID`
+- Renamed `RequestId` to `RequestID`
+- Renamed `SessionId` to `SessionID`
+- Renamed `StreamCompositionId` to `StreamCompositionID`
+- Renamed `StreamId` to `StreamID`
+- Renamed properties with the following acronyms to use consistent casing
+  - `id…`, `…ID`
+  - `url…`, `…URL`
+  - `rtmp…`, `…RTMP`
+
+### Fixed
+
+<!-- for fixed bugs -->
+
+- Fixed a crash that could occur during the de-initialization of a call client.
+- Documentation for default value of `VideoSendSettingsUpdate.encodings`.
+- Fixed a couple of bugs that could cause JSON decoding errors to be thrown.
+
+## [0.8.0] - 2023-05-10
 
 ### Added
 
@@ -154,7 +207,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed a possible crash when joining a call without a call configuration.
 
-## [0.7.0]
+## [0.7.0] - 2023-03-01
 
 ### Added
 
@@ -1289,7 +1342,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     }
     ```
 
-## [0.6.0]
+## [0.6.0] - 2023-01-19
 
 ### Added
 
