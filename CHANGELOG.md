@@ -32,6 +32,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   }
   ```
 
+- Added a new publishing mode called `iOSOptimized`. When enabling the `iOSOptimized` mode
+  for a call, your daily-ios client will send both a high quality HEVC (also known as H.265)
+  encoded video stream and a medium and low quality H.264 encoded video stream.
+
+  ```swift
+  call.updatePublishing(.set(
+    camera: .set(
+      isPublishing: .set(true),
+      sendSettings: .set(
+        maxQuality: .set(.high),
+        encodings: .set(.mode(.iOSOptimized))
+      )
+    )
+  ))
+  ```
+
+- Added a new property called `canAdmin` to the `permissions` field that's part of the
+  `updatePermissions()` method. `canAdmin` can be used to dynamically change permissions
+  for participants from within a call. Admins have the ability to manage participants
+  in a call or manage transcriptions.
+
 ### Changed
 
 <!-- for changed functionality -->
@@ -153,7 +174,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Made properties of `struct RtmpUrlEndpoints` mutable:
 
   - `var rtmpUrls: [URL]`
-  
+
 - Made properties of `struct LiveStreamingSettings` mutable:
 
   - `var audio: AudioStreamingSettings?`
@@ -558,7 +579,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       init(preconfiguredEndpoints: [String])
   }
   ```
-  
+
 - Type `struct RtmpUrlEndpoints`:
 
   ```swift
@@ -570,7 +591,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       init(rtmpUrls: [URL])
   }
   ```
-  
+
 - Type `struct LiveStreamEndpoints`:
 
   ```swift
@@ -578,12 +599,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   enum LiveStreamEndpoints: Encodable {
       /// Preconfigured endpoints.
       case preconfigured(PreconfiguredEndpoints)
-      
+
       /// RTMP endpoints.
       case rtmpUrls(RtmpUrlEndpoints)
   }
   ```
-  
+
 - Type `struct AudioStreamingSettings`:
 
   ```swift
@@ -595,7 +616,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       init(bitrate: Int? = nil)
   }
   ```
-  
+
 - Type `struct LiveStreamingSettings`:
 
   ```swift
@@ -745,7 +766,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       init(uuid: UUID)
   }
   ```
-  
+
   - Type `struct RecordingId`:
 
   ```swift
@@ -963,7 +984,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
           token: MeetingToken?,
           completion: ((Result<CallConfiguration, CallClientError>) -> Void)? = nil
       )
-      
+
       // ...
   }
   ```
@@ -998,7 +1019,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
           _ isEnabled: Bool,
           completion: ((Result<(), CallClientError>) -> Void)? = nil
       )
-      
+
       /// Enable or disable media input devices, like a camera and/or microphone.
       ///
       /// - Example: enable camera input and disable microphone input.
@@ -1078,7 +1099,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
           _ state: SubscriptionState,
           completion: ((Result<(), CallClientError>) -> Void)? = nil
       )
-      
+
       /// Start or stop subscribing to specific tracks from a remote participant.
       ///
       /// - Example: subscribe to a remote participant's camera track and unsubscribe from their microphone track.
@@ -1096,7 +1117,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
           _ mediaTypeToState: [MediaType: SubscriptionState],
           completion: ((Result<(), CallClientError>) -> Void)? = nil
       )
-      
+
       /// Start or stop subscribing to all tracks from specific remote participants.
       ///
       /// - Example: subscribe to a remote participant's tracks, and stop subscribing to another remote participant's tracks.
@@ -1113,7 +1134,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
           _ participantIdToState: [ParticipantId: SubscriptionState],
           completion: ((Result<(), CallClientError>) -> Void)? = nil
       )
-      
+
       /// Start or stop subscribing to specific tracks from specific remote participants.
       ///
       /// - Example: subscribe to two remote participant's camera tracks, and stop subscribing to their microphone tracks.
@@ -1160,7 +1181,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
           _ profile: SubscriptionProfile,
           completion: ((Result<(), CallClientError>) -> Void)? = nil
       )
-      
+
       /// Assign remote participants to subscription profiles.
       ///
       /// - Example: assign a remote participant to a "presenter" profile and another remote participant to an "audience" profile.
@@ -1178,7 +1199,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
           _ participantIdToProfile: [ParticipantId: SubscriptionProfile],
           completion: ((Result<(), CallClientError>) -> Void)? = nil
       )
-      
+
       // ...
   }
   ```
@@ -1197,7 +1218,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       _ inputs: InputSettingsUpdate,
       completion: ((Result<InputSettings, CallClientError>) -> Void)? = nil
     )
-    
+
     // ...
   }
   ```
@@ -1214,7 +1235,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       _ publishing: PublishingSettingsUpdate,
       completion: ((Result<PublishingSettings, CallClientError>) -> Void)? = nil
     )
-    
+
     // ...
   }
   ```
@@ -1274,7 +1295,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       _ subscriptionsByProfile: SubscriptionProfileSettingsUpdatesByProfile,
       completion: ((Result<SubscriptionProfileSettingsByProfile, CallClientError>) -> Void)? = nil
     )
-    
+
     // ...
   }
   ```
@@ -1297,7 +1318,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     )
     where
         Settings: ComplexSettingsUpdate
-    
+
     // ...
   }
   ```
@@ -1326,13 +1347,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Before:
 
-    ```swift
-    struct MeetingSession {
-        let topology: CallTopology
+  ```swift
+  struct MeetingSession {
+      let topology: CallTopology
 
-        // ...
-    }
-    ```
+      // ...
+  }
+  ```
 
   - After:
 
@@ -2551,4 +2572,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.1] - 2022-04-14
 
 Initial release.
-
