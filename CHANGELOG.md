@@ -5,6 +5,49 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] - 2023-09-08
+
+### Added
+
+- Async methods have been added to the `CallClient` for all methods that
+  previously accepted a completion handler.
+
+  *note: Completion blocks are now required, so errors that need to be handled
+  will be obvious. Calls to methods that accept a completion handler will need
+  to be updated to pass `nil` in cases where `nil` was previously being supplied
+  by a default value.*
+
+- Renamed the following `CallClient` methods:
+
+  - `set(username:)` to `setUsername(_:)`
+  - `set(preferredAudioDevice:)` to `setPreferredAudioDevice(_:)`
+
+- Added a new field `inputsEnabled` in the argument to the method `updateRemoteParticipants(_:completion:)`, allowing participant admins to remote-mute others, and meeting owners to remote-mute or -unmute others.
+
+  ```swift
+  public struct RemoteParticipantUpdate {
+    /// A desired update to a remote participant's input enabled states.
+    public var inputsEnabled: RemoteInputsEnabledUpdate?
+
+    // ...
+  }
+
+  /// A desired update to a remote participant's input enabled states.
+  public struct RemoteInputsEnabledUpdate {
+    /// Whether to mute or unmute a remote participant's microphone.
+    public var microphone: Bool?
+
+    /// Whether to mute or unmute a remote participant's camera.
+    public var camera: Bool?
+
+    // ...
+  }
+  ```
+
+### Changed
+
+- Publishing mode `iOSOptimized` introduced in 0.9.0 has been renamed to `adaptiveHEVC`.
+
 ## [0.9.0] - 2023-07-27
 
 ### Added
@@ -82,6 +125,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.8.0] - 2023-05-10
 
 ### Added
+
+<!-- for new functionality -->
 
 - Methods `init?(uuidString:)` and `var uuidString: String` on `struct ParticipantId`:
 
@@ -167,6 +212,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+<!-- for changed functionality -->
+
+- Converted `MediaType` into `InboundMediaType` and `OutboundMediaType`:
+
+  ```swift
+  public enum InboundMediaType {
+      static public var standardTypes: [InboundMediaType] {
+          return [.audio, .video, .screenAudio, .screenVideo]
+      }
+
+      case audio
+      case video
+      case screenAudio
+      case screenVideo
+      case customAudio(CustomTrackName)
+      case customVideo(CustomTrackName)
+  }
+
+  public enum OutboundMediaType {
+      case microphone
+      case camera
+  }
+  ```
+
 - Made properties of `struct PreconfiguredEndpoints` mutable:
 
   - `var preconfiguredEndpoints: [String]`
@@ -225,6 +294,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Made `class CallClient` conform to `protocol ObservableObject`.
 
 ### Fixed
+
+<!-- for fixed bugs -->
 
 - Fixed a possible crash when joining a call without a call configuration.
 
