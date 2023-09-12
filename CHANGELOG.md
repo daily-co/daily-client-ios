@@ -5,6 +5,13 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.1] - 2023-09-12
+
+### Fixed
+
+- Update video track management in UserMedia, to cache previously-held video tracks and fix an issue where updating other parts of media state could cause video to flicker.
+- Fixed an issue with the SDK's self-reported version.
+
 ## [0.10.0] - 2023-09-08
 
 ### Added
