@@ -5,6 +5,17 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] - 2023-10-05
+
+### Fixed
+
+- Video will no longer flicker when muting or unmuting the microphone.
+- The green camera use light will now disappear when muting the camera.
+- Temporary network interruptions will now be handled properly and reconnected.
+- Audio device selection issues:
+    - When the preferred audio device is no longer available, it will now fall back to our default behavior for audio device selection.
+    - Fixed issue where in some scenarios it was changing to use Earpiece without the user having requested it.
+
 ## [0.10.1] - 2023-09-12
 
 ### Fixed
