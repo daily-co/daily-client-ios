@@ -16,8 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `callClientDidDetectStartOfSystemBroadcast`: invoked when the broadcast upload extension has started.
     - `callClientDidDetectEndOfSystemBroadcast`: invoked when the broadcast upload extension has stopped.
   - New property `screenVideo` inside `updateInputs`.
-    - When enabled starts a screen share from the local participant.
-    - When disabled stops the local participant current screen share, if there is one.
+    - When enabled, starts a screen share from the local participant.
+    - When disabled, stops the local participant current screen share, if there is one.
 
   ```swift
     func callClientDidDetectStartOfSystemBroadcast(
@@ -43,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   The `CameraPreviewView.preferred` property can be used to prevent unnecessary
   view recreation in `UIViewRepresentable` implementations in `SwiftUI` apps.
 
-  *note: Video shown in the `CameraPreviewView` for the user facing camera will
+  *Note: Video shown in the `CameraPreviewView` for the user facing camera will
   be mirrored.*
 
 ### Changed

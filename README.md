@@ -21,7 +21,7 @@ and add `"Daily"` to your application/library target, `dependencies`, e.g. like 
 ],
 ```
 
-> Note: If you wish to send screen share from iOS, you will also need to  add DailySystemBroadcast, as mentioned above.
+> Note: If you wish to send screen share from iOS, you will also need to add DailySystemBroadcast, as mentioned above.
 
 ## Learn more
 
