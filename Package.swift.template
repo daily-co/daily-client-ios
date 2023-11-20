@@ -13,11 +13,22 @@ let package = Package(
                 "Daily"
             ]
         ),
+        .library(
+            name: "DailySystemBroadcast",
+            targets: [
+                "DailySystemBroadcast"
+            ]
+        ),
     ],
     targets: [
         .binaryTarget(
             name: "Daily",
             url: "https://www.daily.co/sdk/daily-client-ios-INSERT_VERSION.zip",
+            checksum: "INSERT_CHECKSUM"
+        ),
+        .binaryTarget(
+            name: "DailySystemBroadcast",
+            url: "https://www.daily.co/sdk/daily-system-broadcast-client-ios-INSERT_VERSION.zip",
             checksum: "INSERT_CHECKSUM"
         ),
     ]
