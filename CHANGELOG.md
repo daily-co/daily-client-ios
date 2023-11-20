@@ -5,6 +5,60 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0] - 2023-11-20
+
+### Added
+
+- Added support for screen sharing:
+  - Note: Screen share for iOS is composed by two parts, broadcast upload extension, and the screen share support inside our SDK.
+    In order to start the broadcast upload extension, you should use the native component `RPSystemBroadcastPickerView`.
+  - There are two new delegate functions inside `CallClientDelegate`:
+    - `callClientDidDetectStartOfSystemBroadcast`: invoked when the broadcast upload extension has started.
+    - `callClientDidDetectEndOfSystemBroadcast`: invoked when the broadcast upload extension has stopped.
+  - New property `screenVideo` inside `updateInputs`.
+    - When enabled, starts a screen share from the local participant.
+    - When disabled, stops the local participant current screen share, if there is one.
+
+  ```swift
+    func callClientDidDetectStartOfSystemBroadcast(
+        _ callClient: CallClient
+    ) {
+        callClient.updateInputs(
+            .set(screenVideo: .set(isEnabled: .set(true))),
+            completion: nil
+        )
+    }
+
+    public func callClientDidDetectEndOfSystemBroadcast(
+        _ callClient: CallClient
+    ) {
+        callClient.updateInputs(
+            .set(screenVideo: .set(isEnabled: .set(false))),
+            completion: nil
+        )
+    }
+  ```
+
+- Introduced `CameraPreviewView` for use in apps that do not support rotation.
+  The `CameraPreviewView.preferred` property can be used to prevent unnecessary
+  view recreation in `UIViewRepresentable` implementations in `SwiftUI` apps.
+
+  *Note: Video shown in the `CameraPreviewView` for the user facing camera will
+  be mirrored.*
+
+### Changed
+
+- The `VideoView` will now report an undefined `intrinsicContentSize`. Client
+  code that was relying on the intrinsic size should instead create explicit
+  Auto Layout constraints to manage the size and position of any `VideoView`
+  instances. The `videoView(_:didChangeVideoSize:)` method available via
+  `VideoViewDelegate` can be used to make any needed constraint updates when the
+  size and corresponding aspect ratio of the video changes.
+
+### Fixed
+
+- Fixed a possible crasher that could occur when configuring the `AVAudioSession` without an audio input.
+
 ## [0.11.1] - 2023-10-27
 
 ### Fixed
