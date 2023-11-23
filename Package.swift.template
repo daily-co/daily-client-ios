@@ -29,7 +29,7 @@ let package = Package(
         .binaryTarget(
             name: "DailySystemBroadcast",
             url: "https://www.daily.co/sdk/daily-system-broadcast-client-ios-INSERT_VERSION.zip",
-            checksum: "INSERT_CHECKSUM"
+            checksum: "INSERT_SYSTEM_BROADCAST_CHECKSUM"
         ),
     ]
 )
