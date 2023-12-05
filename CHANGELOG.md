@@ -5,6 +5,32 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.0] - 2023-12-05
+
+### Added
+
+- Added support to change screen share publish settings.
+  ```swift
+    self.callClient.updatePublishing(.set(
+        screenVideo: .set(
+            isPublishing: .set(true),
+            sendSettings: .set(
+                maxQuality: .set(.low),
+                encodings: .set(
+                    .config(VideoEncodingSettingsByQualityUpdate(
+                        low: .set(
+                            maxBitrate: .set(1_200_000),
+                            maxFramerate: .set(15),
+                            scaleResolutionDownBy: .set(1)
+                        )
+                    )
+                    )
+                )
+            )
+        )
+    ), completion: nil)
+  ```
+
 ## [0.12.0] - 2023-11-20
 
 ### Added
