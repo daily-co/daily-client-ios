@@ -5,6 +5,33 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.14.0] - 2023-12-22
+
+### Added
+
+- Allowed to choose the preferred codec.
+  ```swift
+    self.callClient.updatePublishing(.set(
+        camera: .set(
+            isPublishing: .set(self.cameraIsPublishing),
+            sendSettings: .set(
+                preferredCodec: .set(.h264)
+            )
+        )
+    ), completion: nil)
+  ```
+- Added a remote participant audio level observer that provides the audio level for all remote participants respecting the specified frequency.
+  ```swift
+    // Starts the remote audio level observer
+    self.callClient.startRemoteParticipantsAudioLevelObserver(intervalMs:1000, completion: nil)
+    // Stops the remote audio level observer
+    self.callClient.stopRemoteParticipantsAudioLevelObserver(completion: nil)
+    // New CallClientDelegate function
+    func callClient(_ callClient: Daily.CallClient, remoteParticipantsAudioLevel participantsAudioLevel: Daily.KeyedSettings<Daily.ParticipantID, Float>) {
+        // audio level for each remote participant
+    }
+  ```
+
 ## [0.13.0] - 2023-12-05
 
 ### Added
