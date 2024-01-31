@@ -5,6 +5,16 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.15.0] - 2024-01-31
+
+### Fixed
+
+- Fixed multiple issues which could cause a deadlock during network reconnection.
+
+- Ensure that `updateInputs()` continues to be usable while the network is down.
+
+- Fixed a crash which could occur if the network connection drops soon after joining.
+
 ## [0.14.0] - 2023-12-22
 
 ### Added
