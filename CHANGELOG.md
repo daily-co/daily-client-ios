@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.16.0] - 2024-02-26
 
+### Added
+
+- Ability to add, remove and update custom tracks, using `CallClient.addCustomVideoTrack()`,
+`CallClient.updateCustomVideoTrack()` and `CallClient.removeCustomVideoTrack()`.
+
 ### Changed
 
 - More SDK logging now appears in the dashboard.
