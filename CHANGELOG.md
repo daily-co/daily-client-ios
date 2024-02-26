@@ -5,6 +5,18 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.16.0] - 2024-02-26
+
+### Changed
+
+- More SDK logging now appears in the dashboard.
+
+- In HIPAA mode, the user ID is no longer redacted in dashboard logs if it's a valid UUID.
+
+### Fixed
+
+- Enable Opus FEC to improve audio with network packet loss.
+
 ## [0.15.0] - 2024-01-31
 
 ### Fixed
