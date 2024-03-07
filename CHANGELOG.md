@@ -5,6 +5,26 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.17.0] - 2024-03-07
+
+### Added
+
+- Add support for `audio-only` recording layout preset.
+- Add transcription management features:
+  - New `CallClient` methods:
+    - `startTranscription(withSettings:completion:)` and `startTranscription(withSettings:)`
+    - `stopTranscription(completion:)` and `stopTranscription()`
+  - New delegate methods:
+    - `callClient(_:transcriptionStarted:)`
+    - `callClient(_:transcriptionStoppedBy:)`
+    - `callClient(_:transcriptionError:)`
+- Add `rawResponse` field to `TranscriptionMessage`. It's included if `includeRawResponse` was specified when starting the transcription
+
+### Fixed
+
+- Fixed an issue that could cause join to fail if recording/transcription/live
+  stream was started from the REST API.
+
 ## [0.16.0] - 2024-02-26
 
 ### Added
@@ -21,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Enable Opus FEC to improve audio with network packet loss.
+- Fixed nondeterministic failures in sendAppMessage.
 
 ## [0.15.0] - 2024-01-31
 
