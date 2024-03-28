@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name               = "Daily"
-  spec.version            = "0.17.0"
+  spec.version            = "0.18.0"
   spec.summary            = "The Daily Client SDK for iOS"
   spec.homepage           = "https://github.com/daily-co/daily-client-ios"
   spec.description        = "The Daily Client SDK allows you to build video and audio calling into your iOS applications"
@@ -9,8 +9,8 @@ Pod::Spec.new do |spec|
   spec.author             = { "Daily.co" => "help@daily.co" }
   spec.swift_version      = "5.0"
   spec.platforms          = { :ios => '13.0' }
-  spec.source             = { :http => 'https://www.daily.co/sdk/daily-client-ios-0.17.0.zip',
-                              :sha256 => "2a75ec90628b43fd3d2439238a0147e4bf07e8f80cfc0126d84571c52940d179",
+  spec.source             = { :http => 'https://www.daily.co/sdk/daily-client-ios-0.18.0.zip',
+                              :sha256 => "294850e491308a0eb35de6ba177c3a01c7d2c0a8547939df1f8835a14a202233",
                               :flatten => false }
   spec.vendored_frameworks = "Daily.xcframework"
 end

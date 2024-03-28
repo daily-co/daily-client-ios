@@ -5,6 +5,29 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.0] - 2024-03-28
+
+### Added
+
+- Introduced support for adaptive bitrate layers. This will improve the visual call quality by utilizing an adaptive bitrate and resolution strategy for the topmost SFU layer.
+  ```swift
+    self.callClient.updatePublishing(.set(
+        camera: .set(
+            isPublishing: .set(self.cameraIsPublishing),
+            sendSettings: .set(
+                allowAdaptiveLayers: .set(true)
+            )
+        )
+    ), completion: nil)
+  ```
+### Fixed
+
+<!-- for fixed bugs -->
+
+- Fixed issue where `onParticipantUpdated()` didn't reflect the new state of the local participant's screen video
+  track, in cases where `leave()` was called while a screen share was active.
+- Fixed a crash which could occur randomly during logging. 
+
 ## [0.17.0] - 2024-03-07
 
 ### Added
