@@ -5,6 +5,25 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.0] - 2024-04-16
+
+### Added
+
+- Added a local audio level observer that provides the audio level for the local participant respecting the specified frequency.
+  ```swift
+    // Starts the local audio level observer
+    self.callClient.startLocalAudioLevelObserver(intervalMs:1000, completion: nil)
+    // Stops the local audio level observer
+    self.callClient.stopLocalAudioLevelObserver(completion: nil)
+    // New CallClientDelegate function
+    func callClient(_ callClient: Daily.CallClient, localAudioLevel audioLevel: Float) {
+        // audio level for the local participant
+    }
+  ```
+### Fixed
+
+- Fixed issue when calling `updatePublishing()` immediately after `updateInputs()`.
+
 ## [0.18.0] - 2024-03-28
 
 ### Added
