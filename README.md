@@ -16,8 +16,8 @@ and add `"Daily"` to your application/library target, `dependencies`, e.g. like 
 
 ```swift
 .target(name: "YourApp", dependencies: [
-    .product(name: "Daily", package: "daily-ios-client")
-    .product(name: "DailySystemBroadcast", package: "daily-ios-client")
+    .product(name: "Daily", package: "daily-client-ios")
+    .product(name: "DailySystemBroadcast", package: "daily-client-ios")
 ],
 ```
 
