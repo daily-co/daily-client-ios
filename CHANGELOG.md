@@ -5,6 +5,41 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.20.0] - 2024-05-14
+
+### Added
+
+- Ability to toggle the camera flashlight with `updateInputs()`:
+  ```swift
+    self.callClient.updateInputs(.set(
+        camera: .set(
+            settings: .set(
+                torch: .set(true),
+            )
+        )
+    ), completion: nil)
+  ```
+
+- Ability to set the camera zoom with `updateInputs()`:
+  ```swift
+    self.callClient.updateInputs(.set(
+        camera: .set(
+            settings: .set(
+                zoom: .set(2.0)
+            )
+        )
+    ), completion: nil)
+  ```
+
+- Added convenience methods for setting camera torch and zoom:
+  - `CallClient.setCameraZoom()`
+  - `CallClient.setCameraTorch()`
+  
+### Fixed
+
+- Resolved an issue where the videos sent had the wrong orientation when viewed on iOS mobile web.
+- Fixed an issue where `joinedAt` value (participant info) could sometimes be zero.
+
 ## [0.19.0] - 2024-04-16
 
 ### Added
