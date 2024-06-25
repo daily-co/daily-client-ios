@@ -5,6 +5,25 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.21.0] - 2024-06-25
+
+### Added
+
+- Introduced support to send connections to Daily's HTTPS and WebSocket endpoints to a specified proxy server instead.
+  ```swift
+    callClient?.setProxyUrl("YOUR_PROXY_URL")
+  ```
+
+- Introduced support for specifying custom TURN servers rather than only using Daily's default TURN servers.
+  ```swift
+    self.callClient.set(iceConfig: IceConfig(
+        placement: IceConfigPlacement.back,
+        iceServers: [
+            IceServers(urls: ["stun:stun.l.google.com:19302"])
+        ]
+    ), completion: nil)
+  ```
+
 ## [0.20.0] - 2024-05-14
 
 ### Added
