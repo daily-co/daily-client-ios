@@ -23,13 +23,13 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "Daily",
-            url: "https://www.daily.co/sdk/daily-client-ios-0.21.0.zip",
-            checksum: "5335d52278a0191500661acdf59e539314f34dbd3f7b019c70a2435fd3c652d0"
+            url: "https://www.daily.co/sdk/daily-client-ios-0.22.0.zip",
+            checksum: "1324e8c058075a24fba88a9d686e584ceb3a1ba3d08383331d0bc9b6ab55d9b8"
         ),
         .binaryTarget(
             name: "DailySystemBroadcast",
-            url: "https://www.daily.co/sdk/daily-system-broadcast-client-ios-0.21.0.zip",
-            checksum: "f7deb43bfef40bcad52dd52509ce74d99111dacdedd84eee0db5f2287ef33164"
+            url: "https://www.daily.co/sdk/daily-system-broadcast-client-ios-0.22.0.zip",
+            checksum: "d3225c31be913809cd909b0ee9142916d7797958a11e3bc3236bba14e45e428f"
         ),
     ]
 )
