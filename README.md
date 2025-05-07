@@ -9,7 +9,7 @@ If you are developing a video application and targeting iOS apps, we think Daily
 To depend on the Daily Client package, you can add this package via Xcode's package manager using the URL of this git repository directly, or you can declare your dependency in your `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/daily-co/daily-client-ios.git", from: "0.30.0"),
+.package(url: "https://github.com/daily-co/daily-client-ios.git", from: "0.31.0"),
 ```
 
 and add `"Daily"` to your application/library target, `dependencies`, e.g. like this:

@@ -5,6 +5,23 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.31.0] - 2025-05-07
+
+### Added
+
+- Support the new `canReceive` permission, which involves:
+  - Adding the `canReceive` permission to:
+    - `ParticipantPermissions` (the type in the `Participant` model)
+    - `ParticipantPermissionsUpdate` (the type used by `updateRemoteParticipants()`)
+  - Showing the proper track state (i.e. `off`, with reason `receivePermission`) when `canReceive`
+    permission is lacking for a remote track.
+  - Resuming receiving remote tracks when previously-revoked `canReceive` permissions have been
+    restored.
+
+- Retrying multiple times to open the signalling channel during the join.
+
+- Alternate websocket URI format to avoid connection issues potentially caused by ISPs.
+
 ## [0.30.0] - 2025-03-28
 
 ### Fixed
