@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
   spec.author             = { "Daily.co" => "help@daily.co" }
   spec.swift_version      = "5.0"
   spec.platforms          = { :ios => '13.0' }
-  spec.source             = { :http => 'https://www.daily.co/sdk/daily-system-broadcast-client-ios-0.31.0.zip',
+  spec.source             = { :http => 'https://sdk-downloads.daily.co/daily-system-broadcast-client-ios-0.31.0.zip',
                               :sha256 => "6d7667cd412a05c387789eb772cbeb4d713d0973bd3198efaf5f58c18444665f",
                               :flatten => false }
   spec.vendored_frameworks = "DailySystemBroadcast.xcframework"

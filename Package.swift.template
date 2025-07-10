@@ -23,12 +23,12 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "Daily",
-            url: "https://www.daily.co/sdk/daily-client-ios-INSERT_VERSION.zip",
+            url: "https://sdk-downloads.daily.co/daily-client-ios-INSERT_VERSION.zip",
             checksum: "INSERT_CHECKSUM"
         ),
         .binaryTarget(
             name: "DailySystemBroadcast",
-            url: "https://www.daily.co/sdk/daily-system-broadcast-client-ios-INSERT_VERSION.zip",
+            url: "https://sdk-downloads.daily.co/daily-system-broadcast-client-ios-INSERT_VERSION.zip",
             checksum: "INSERT_SYSTEM_BROADCAST_CHECKSUM"
         ),
     ]
