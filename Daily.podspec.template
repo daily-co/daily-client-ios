@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
   spec.author             = { "Daily.co" => "help@daily.co" }
   spec.swift_version      = "5.0"
   spec.platforms          = { :ios => '13.0' }
-  spec.source             = { :http => 'https://www.daily.co/sdk/daily-client-ios-INSERT_VERSION.zip',
+  spec.source             = { :http => 'https://sdk-downloads.daily.co/daily-client-ios-INSERT_VERSION.zip',
                               :sha256 => "INSERT_CHECKSUM",
                               :flatten => false }
   spec.vendored_frameworks = "Daily.xcframework"
