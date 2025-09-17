@@ -5,6 +5,13 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.34.0] - 2025-09-17
+
+### Fixed
+
+- Fixed an issue where the application could keep attempting to send messages after the signaling channel was closed preventing the application to finish.
+
+
 ## [0.33.0] - 2025-08-11
 
 - Added new signalling message to report the meeting type.
