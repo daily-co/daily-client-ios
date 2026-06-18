@@ -5,6 +5,39 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.38.0] - 2026-06-18
+
+### Added
+
+- Added `CallClient.initAsync()`, a static async factory that runs the blocking WebRTC/MediaSoup initialization off the
+  main thread, keeping the UI responsive during `CallClient` creation.
+
+- Added automatic fallback to `dailywebrtc.com` and `dailywebrtc.net` when `daily.co` authoritative nameservers are
+  unreachable, improving connection resilience.
+
+### Changed
+
+- Adaptive Bitrate (ABR) is now enabled by default for camera tracks. It can still be disabled by setting
+  `allowAdaptiveLayers` to `false` in the camera `sendSettings`.
+
+### Fixed
+
+- Fixed an issue where SDK resources were not properly cleaned up when all `CallClient` instances were released.
+
+- Fixed an intermittent crash when force-quitting and relaunching the app while the camera was active.
+
+- Fixed panics in signalling reconnect paths when room lookup returns no worker.
+
+- Fixed support for `cloud-audio-only` recording type.
+
+### Performance
+
+- Replaced `ureq` HTTP client with `hyper` + `rustls` (ring backend). Includes connection timeouts, TLS configuration
+  reuse, and per-request timing metrics for DNS lookup, TCP connect, and TLS handshake.
+
+- Added per-phase connection timing metrics for WebSocket signalling (DNS lookup, TCP connect, TLS handshake, and
+  WebSocket upgrade), complementing the existing HTTP connection timings.
+
 ## [0.37.0] - 2026-01-16
 
 ### Fixed
