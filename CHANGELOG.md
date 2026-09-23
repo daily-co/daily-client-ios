@@ -5,6 +5,43 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.40.0] - 2026-09-23
+
+### Added
+
+- Added support to automatically start transcription when joining a room if the
+  `auto_start_transcription` meeting token property is set, using the room's
+  `auto_transcription_settings`.
+
+- Added candidate-pair round-trip time to call metrics, so latency is
+  measured consistently, including for receive-only participants.
+
+### Changed
+
+- Upgraded libwebrtc to `branch-heads/8010` (M153). Its vendored media and
+  crypto dependencies (ffmpeg, libvpx and BoringSSL among them) are
+  substantially newer.
+
+- H.265 calls interoperate with current browsers again. H.265 support now
+  comes from libwebrtc itself, matching the H.265 RTP behaviour current browsers
+  expect; the implementation we previously back-ported predated it.
+
+- **Breaking:** the minimum supported iOS version is now 14.0. This follows the
+  deployment target libwebrtc 8010 is built against.
+
+### Fixed
+
+- Fixed an issue where `videoBitrate` and `audioBitrate` in a meeting token's
+  `start_cloud_recording_opts` were ignored, causing recordings started from the
+  token to use the default bitrates.
+
+- Fixed `startLiveStream(endpoints: .rtmpURLs(...))` failing with
+  "unknown variant rtmpURLs". The SDK now sends the `rtmpUrls` preset tag and
+  key that the core expects.
+
+- Fixed multiple memory, thread and file descriptor leaks when creating and
+  releasing `CallClient`s.
+
 ## [0.39.0] - 2026-07-24
 
 ### Added
