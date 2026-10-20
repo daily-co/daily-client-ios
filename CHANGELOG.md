@@ -5,6 +5,120 @@ All notable changes to the **daily-client-ios** SDK will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [0.41.0] - 2026-10-20
+
+### Added
+
+- Added `startBitrate` to `VideoSendSettings` and `VideoSendSettingsUpdate`, so
+  the bitrate the camera and screen video start sending at can be configured.
+  It is in bits per second and defaults to 1_000_000, the value previously
+  hardcoded.
+
+- Added `adaptiveLayerMaxBitrate` to `VideoSendSettings` and
+  `VideoSendSettingsUpdate`, to cap, in bits per second, the bitrate adaptive
+  bitrate ramps up to. It never goes below 200000 and can be changed during a
+  call; `.fromDefaults` removes it.
+
+- Added `connection` to `ClientSettingsUpdate`, used when joining, with
+  `ConnectionSettings.initialReceiveBitrate`: your expected download
+  bandwidth, in bits per second. The SFU starts its estimate of what it can
+  send you from this value (1000000 by default), which also sets the first
+  target bitrate other participants get.
+
+- Added experimental support for `VP9` as a `preferredCodec`. VP8 remains the
+  default: VP9 is only used when an application explicitly sets it, and the
+  SFU's router offers VP9. It is sent as a single SVC encoding, so the SFU can
+  still forward a lower spatial layer to each receiver. Recording and RTMP
+  streaming do not support VP9 yet. libwebrtc is now built with VP9
+  (`rtc_libvpx_build_vp9`), so VP9 can be both sent and received.
+
+- Added `h265` to `VideoSendSettingsCodecName`, so H.265 can be chosen as the
+  `preferredCodec` directly instead of only through the `adaptiveHEVC`
+  encodings mode.
+
+- Screen share subscriptions can now be read and changed.
+  `MediaSubscriptionSettings` and `MediaSubscriptionSettingsUpdate` carry
+  `screenVideo` and `screenAudio`, typed as the new
+  `ScreenVideoSubscriptionSettings` and `ScreenAudioSubscriptionSettings`, and
+  `setSubscriptionState(_:completion:)` accepts `.screenVideo` and `.screenAudio`.
+
+- `CallClientError` now conforms to `LocalizedError`, so its
+  `localizedDescription` says what failed in daily-core's own words, e.g.
+  `Recording(Properties(RecordingNotEnabled))`, rather than a generic
+  "The operation couldn't be completed".
+
+- `VideoTrack.add(frameConsumer:)` and `remove(frameConsumer:)`, which deliver
+  a track's decoded frames to your own code, for rendering a video somewhere
+  `VideoView` cannot go, such as a Metal pipeline or a frame processor. Each
+  `VideoFrame` carries an NV12 `CVPixelBuffer`, the `rotation` to apply when
+  displaying it, and a timestamp. Frames arrive on a WebRTC decoder thread, and
+  keep arriving until you remove the consumer or it is deallocated:
+
+  ```swift
+  final class FrameReceiver: VideoFrameConsumer {
+      func consume(_ frame: VideoFrame) {
+          // frame.pixelBuffer, frame.rotation, frame.timeStampNs
+      }
+  }
+
+  let receiver = FrameReceiver()  // keep a reference: the track holds it weakly
+  participant.media?.camera.track?.add(frameConsumer: receiver)
+  ```
+
+  You can also use the frames to build Picture in Picture.
+
+- The data models now conform to `Codable`: values such as `Participant` and
+  `CallConfiguration` can be encoded, and the `…Update` types decoded, in the
+  same JSON the SDK reads.
+
+### Fixed
+
+- Fixed `VideoSendSettingsCodecName` failing to decode publishing settings
+  whose `preferredCodec` is `H265`, and its error message calling the value a
+  max quality.
+
+- Fixed a potential crash when a joined `CallClient` was deinitialized without
+  `leave()` being called first: the call's peer connection and microphone
+  stayed alive and could be used after the WebRTC threads had been destroyed.
+
+- Fixed a rare deadlock that could freeze the app while a `CallClient` was
+  being deinitialized shortly after another one.
+
+- Fixed a native memory leak that grew with the length of a call, about
+  0.7 MB per minute with one published and one subscribed track.
+
+- Deinitializing a `CallClient` no longer blocks the main thread while the call
+  is torn down (which can take up to a few seconds for a client released
+  mid-call). The teardown now finishes in the background.
+
+- Fixed `maxCamStreams` being dropped from a default streaming layout. Starting
+  or updating a recording or live stream with `.default(maxCamStreams:)` sent
+  the layout without it, so the stream used the default number of cameras.
+
+- Fixed a custom streaming layout without composition params failing to decode.
+  daily-core treats them as optional, so such a layout -- in a recording or live
+  stream status, or a settings update -- could not be read.
+
+- Fixed video sent with `preferredCodec` `h265` never reaching other
+  participants: the SFU rejected it. H265 is now sent as a single encoding.
+
+- Fixed per-stream bitrates in the network stats (`videoSendBitsPerSecond`,
+  `videoRecvBitsPerSecond`) being 1,000 times too small.
+
+- Fixed `videoSendBitsPerSecond`, `sendBitsPerSecond` and the other send-side
+  network stats always reading 0: libwebrtc 8010's stats no longer include a
+  field the parser required, so all stats for the sending connection were
+  discarded.
+
+- Fixed the top simulcast layer not being sent at the start of a call.
+  `maxQuality` was passed to libmediasoupclient off by one, so `high` turned
+  the high layer off, `medium` turned the medium layer off and `low` had no
+  effect. With adaptive layers off, receivers got at most the medium layer
+  (360p for a 720p camera) until the camera track was next updated, for
+  example by switching or toggling the camera. With adaptive layers on, it
+  lasted only until the first adaptive-layer update, a second or two in.
+
 ## [0.40.0] - 2026-09-23
 
 ### Added

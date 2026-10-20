@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name               = "DailySystemBroadcast"
-  spec.version            = "0.40.0"
+  spec.version            = "0.41.0"
   spec.summary            = "The Daily System Broadcast extension for iOS"
   spec.homepage           = "https://github.com/daily-co/daily-client-ios"
   spec.description        = "The Daily Framework to make It easy add support for screen share on iOS."
@@ -9,8 +9,8 @@ Pod::Spec.new do |spec|
   spec.author             = { "Daily.co" => "help@daily.co" }
   spec.swift_version      = "5.0"
   spec.platforms          = { :ios => '13.0' }
-  spec.source             = { :http => 'https://sdk-downloads.daily.co/daily-system-broadcast-client-ios-0.40.0.zip',
-                              :sha256 => "ecedd80b118f4ac369866244c1508651804faab848c0227b4b0ac9197903836b",
+  spec.source             = { :http => 'https://sdk-downloads.daily.co/daily-system-broadcast-client-ios-0.41.0.zip',
+                              :sha256 => "c80d26767696072e5915ff4df1f2b194f8157df3287ecc9ecfd94706a75b2131",
                               :flatten => false }
   spec.vendored_frameworks = "DailySystemBroadcast.xcframework"
 end
